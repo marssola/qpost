@@ -8,7 +8,7 @@ Rectangle {
     property string title_page: ""
 
     width: parent.width
-    height: 60
+    height: 50
     color: Material.accent
 
     Text {
@@ -18,8 +18,9 @@ Rectangle {
 
         text: qsTr(title_page)
         color: "#FFF"
-        font.pixelSize: 20
+        font.pixelSize: 25
         font.weight: Font.Light
+        horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
     }
 }

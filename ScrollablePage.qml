@@ -9,7 +9,7 @@ Page {
 
     Flickable {
         anchors.fill: parent
-        anchors.margins: 10
+        anchors.margins: 2
         contentHeight: pane.implicitHeight
         flickableDirection: Flickable.AutoFlickIfNeeded
 
