@@ -8,7 +8,7 @@ Item {
     property color colorButton: "#fff"
     property var iconButton: ""
     property var textButton: ""
-    property int contentWidth: content.width + 22
+    property int contentWidth: content.width + 25
 
     height: parent.height
 
@@ -16,6 +16,7 @@ Item {
         id: content
         width: (icon.width + label.width)
         height: parent.height
+        anchors.centerIn: parent
 
         Text {
             id: icon
