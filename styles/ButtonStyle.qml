@@ -8,25 +8,33 @@ Item {
     property color colorButton: "#fff"
     property var iconButton: ""
     property var textButton: ""
+    property int contentWidth: content.width + 22
 
-    width: parent.width
     height: parent.height
 
-    RowLayout {
-        anchors.fill: parent
+    Item {
+        id: content
+        width: (icon.width + label.width)
+        height: parent.height
+
         Text {
+            id: icon
+            visible: iconButton.length > 0
             font.family: material_icon.name
             text: iconButton;
             color: colorButton
-            visible: iconButton.length > 0
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Text {
+            id: label
             text: qsTr(textButton)
             color: colorButton
-            Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             font.capitalization: Font.AllUppercase
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: icon.right
+            anchors.leftMargin: 5
         }
     }
 }
