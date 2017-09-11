@@ -6,5 +6,6 @@
         <file>ScrollablePage.qml</file>
         <file>HeaderPage.qml</file>
         <file>fonts/MaterialIcons.ttf</file>
+        <file>styles/ButtonStyle.qml</file>
     </qresource>
 </RCC>

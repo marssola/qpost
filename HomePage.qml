@@ -5,6 +5,8 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
+import "./styles"
+
 ScrollablePage {
     id: homePage
 
@@ -16,214 +18,98 @@ ScrollablePage {
         {'parameter': 'parametro 3', 'value': 'valor'},
         {'parameter': 'parametro 3', 'value': 'valor'}*/
 
-    ColumnLayout {
+    Column {
+        anchors.fill: parent
+
         Item {
-            id: item_options
             width: parent.width
+            height: 20
+        }
 
-            Rectangle {
-                id: rectangle_options
-                width: parent.width
-                height: 210
-                border.color: "#ddd"
+        Rectangle {
+            width: parent.width
+            height: rowlayout_url.height + rowlayout_parameters.height + 20
+            border.color: "#ccc"
 
-                Column {
-                    anchors.fill: parent
-                    anchors.margins: 5
+            Column {
+                anchors.fill: parent
+                anchors.margins: 10
+
+                RowLayout {
+                    id: rowlayout_url
+                    width: parent.width
                     spacing: 10
 
-                    // Field URL
-                    Rectangle {
-                        width: parent.width
-                        height: 20
-                        color: "#eee"
-
-                        Text {
-                            width: parent.width
-                            height: parent.height
-                            wrapMode: Text.Wrap
-                            text: qsTr("URL")
-                            font.bold: true
-                            verticalAlignment: Text.AlignVCenter
-                            anchors.leftMargin: 5
-                            anchors.left: parent.left
-                        }
+                    Text {
+                        text: qsTr("URL:")
+                        font.bold: true
                     }
 
                     TextField {
-                        id: field_url
-                        width: parent.width
                         placeholderText: qsTr("URL")
-
-                        anchors.left: parent.left
-                        anchors.leftMargin: 10
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
+                        Layout.fillWidth: true
                     }
+                    Button {
+                        Layout.minimumWidth: 100
+                        Material.background: Material.Green
+                        Material.foreground: "#fff"
 
-                    // Row Title "Table" Parameters
-                    Rectangle {
-                        width: parent.width
-                        height: 25
-                        color: "#eee"
-
-                        Row {
-                            anchors.fill: parent
-                            anchors.margins: 5
-                            Text {
-                                width: (parent.width /2)
-                                height: parent.height
-                                verticalAlignment: Text.AlignVCenter
-                                font.bold: true
-                                text: qsTr("Parametro")
-                            }
-                            Text {
-                                width: (parent.width /2)
-                                height: parent.height
-                                verticalAlignment: Text.AlignVCenter
-                                font.bold: true
-                                text: qsTr("Valor")
-                            }
-                        }
-                    }
-
-                    Item {
-                        width: parent.width
-                        height: 5
-                    }
-
-                    // List parameters
-
-                    /*Item {
-                        width: parent.width
-                        height: 50
-                        visible: (homePage.parameters.length == 0)? true : false
-
-                        Label {
-                            text: qsTr("Nenhum parametro adicionado")
-                            anchors.centerIn: parent
-                        }
-                    }*/
-
-                    ListView {
-                        id: listview
-                        width: parent.width
-                        height: 50
-                        ScrollIndicator.vertical: ScrollIndicator { }
-
-                        model: parameters
-                        delegate: ItemDelegate {
-                            width: parent.width
-                            height: 35
-
-                            Row {
-                                anchors.fill: parent
-                                anchors.margins: 5
-                                Text {
-                                    width: (parent.width /2)
-                                    height: parent.height
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: modelData.parameter
-                                }
-                                Text {
-                                    width: (parent.width /2)
-                                    height: parent.height
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: modelData.value
-                                }
-                            }
-                            Rectangle {
-                                width: parent.width
-                                height: 1
-                                color: "#ccc"
-                                anchors.bottom: parent.bottom
-                            }
+                        contentItem: ButtonStyle {
+                            iconButton: "\uE163"
+                            textButton: "Enviar"
+                            colorButton: "#fff"
                         }
                     }
                 }
+                Rectangle {
+                    width: parent.width
+                    height: 1
+                    color: "#ddd"
+                }
 
-                // Button add parameter
-                Button {
-                    width: 30
-                    height: 30
-                    anchors.top: rectangle_options.bottom
-                    anchors.topMargin: -15
-                    anchors.right: parent.right
-                    anchors.rightMargin: -5
+                RowLayout {
+                    id: rowlayout_parameters
+                    width: parent.width
+                    anchors.margins: 20
+                    spacing: 10
 
-                    background: Rectangle {
-                        anchors.fill: parent
-                        radius: parent.width /2
-                        color: Material.accent
+                    Text {
+                        text: qsTr("Parâmetros:")
+                        font.bold: true
+                    }
+                    Text {
+                        text: homePage.parameters.length
+                        Layout.fillWidth: true
+                        wrapMode: Text.WordWrap
+                    }
+                    Button {
+                        Layout.minimumWidth: 100
+                        Material.background: Material.Blue
+                        Material.foreground: "#fff"
 
-                        Text {
-                            text: "\uE145"
-                            font.family: material_icon.name
-                            font.pixelSize: Math.round(parent.width * 0.9)
-                            color: "#fff"
-                            anchors.centerIn: parent
+                        contentItem: ButtonStyle {
+                            iconButton: "\uE254"
+                            textButton: "Editar"
+                            colorButton: "#fff"
+                        }
+
+                        onClicked: {
+                            dialog_parameters.open();
                         }
                     }
 
-                    onClicked: {
-                        dialog_add_parameter.open()
-                    }
                 }
             }
         }
 
         Dialog {
-            id: dialog_add_parameter
-            title: qsTr("Adicionar parametro")
+            id: dialog_parameters
+            title: qsTr("Editar parâmetros")
             modal: true
 
             x: Math.round((window.width - width) /2)
-            y: 0
-            width: (window.width > 350)? 300 : Math.round(window.width * 0.90)
-
-            contentItem: Rectangle {
-                color: "transparent"
-                implicitWidth: parent.width
-
-                Column {
-                    width: parent.width
-                    spacing: 10
-                    anchors.margins: 10
-
-                    Label {
-                        text: qsTr("Parametro:")
-                    }
-                    TextField {
-                        id: textfield_parameter
-                        width: parent.width
-                        placeholderText: qsTr("Parametro")
-                    }
-
-                    Label {
-                        text: qsTr("Valor:")
-                    }
-                    TextField {
-                        id: textfield_value
-                        width: parent.width
-                        placeholderText: qsTr("Valor")
-                    }
-
-                    Button {
-                        id: button_append_parameter
-                        width: parent.width
-                        text: qsTr("Adicionar")
-                        Material.background: Material.Green
-                        Material.foreground: "#fff"
-
-                        onClicked: {
-                            homePage.parameters.push({'parameter': textfield_parameter.text, 'value': textfield_value.text})
-                            listview.model = homePage.parameters
-                            textfield_parameter.text = ""
-                            textfield_value.text = ""
-                        }
-                    }
-                }
-            }
+            width: (window.width > 1000)? 1000 : parent.width
+            height: window.height - window.header.height
         }
     }
 

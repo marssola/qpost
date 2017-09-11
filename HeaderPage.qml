@@ -20,7 +20,8 @@ Rectangle {
         color: "#FFF"
         font.pixelSize: 25
         font.weight: Font.Light
-        horizontalAlignment: Text.AlignHCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 10
         verticalAlignment: Qt.AlignVCenter
     }
 }

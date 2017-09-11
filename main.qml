@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Material 2.0
 
+import "./styles"
+
 ApplicationWindow {
     id: window
     visible: true
