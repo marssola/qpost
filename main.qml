@@ -21,10 +21,43 @@ ApplicationWindow {
         source: "qrc:/fonts/MaterialIcons.ttf"
     }
 
+    property bool busy: false
+
     header: HeaderPage {}
     StackView {
         id: stackview
         anchors.fill: parent
         initialItem: HomePage {}
+    }
+
+    Rectangle {
+        visible: sendRequest.state == "loading"
+        anchors.fill: parent
+        color: Qt.rgba(0, 0, 0, 0.8)
+
+        BusyIndicator {
+            id: busy_indicator
+            anchors.centerIn: parent
+        }
+        Text {
+            width: parent.width
+            anchors.top: busy_indicator.bottom
+            horizontalAlignment: Text.AlignHCenter
+
+            color: "#fff"
+            text: qsTr("aguarde...")
+        }
+        z: 2
+    }
+
+    QJSON {
+        id: sendRequest
+        onStateChanged: {
+            if (state == "error") {
+                console.log(errorString)
+            }
+            if (state == "ready") {
+            }
+        }
     }
 }

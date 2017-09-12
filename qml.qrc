@@ -7,5 +7,8 @@
         <file>HeaderPage.qml</file>
         <file>fonts/MaterialIcons.ttf</file>
         <file>styles/ButtonStyle.qml</file>
+        <file>dialogs/DialogParameters.qml</file>
+        <file>dialogs/DialogAddParameters.qml</file>
+        <file>QJSON.qml</file>
     </qresource>
 </RCC>

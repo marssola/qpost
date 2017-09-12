@@ -6,10 +6,12 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
 import "./styles"
+import "./dialogs"
 
 ScrollablePage {
     id: homePage
 
+    property var getJson: []
     property var parameters: [
         /*{'parameter': 'parametro 1', 'value': 'valor'},
         {'parameter': 'parametro 2', 'value': 'valor'},
@@ -19,403 +21,219 @@ ScrollablePage {
         {'parameter': 'parametro 6', 'value': 'valor'}*/
     ];
 
-    Column {
+    contentItem: Item {
         anchors.fill: parent
 
-        Item {
-            width: parent.width
-            height: 20
-        }
+        Column {
+            anchors.fill: parent
 
-        Rectangle {
-            width: parent.width
-            height: rowlayout_url.height + rowlayout_parameters.height + rowlayout_buttons.height + 20
-            border.color: "#ddd"
-
-            Column {
-                anchors.fill: parent
-                anchors.margins: 10
-
-                RowLayout {
-                    id: rowlayout_url
-                    width: parent.width
-                    spacing: 10
-
-                    Text {
-                        text: qsTr("URL:")
-                        font.bold: true
-                    }
-
-                    TextField {
-                        placeholderText: qsTr("URL")
-                        Layout.fillWidth: true
-                    }
-
-                    ComboBox {
-                        id: method
-                        Layout.minimumWidth: 80
-                        model: ['POST', 'GET']
-
-                        Material.background: "#fff"
-                    }
-                }
-
-                Rectangle {
-                    width: parent.width
-                    height: 1
-                    color: "#eee"
-                }
-
-                RowLayout {
-                    id: rowlayout_parameters
-                    width: parent.width
-                    anchors.margins: 20
-                    spacing: 10
-
-                    Text {
-                        text: qsTr("Parâmetros:")
-                        font.bold: true
-                    }
-                    Text {
-                        id: count_parameters
-                        text: parameters.length
-                        Layout.fillWidth: true
-                        wrapMode: Text.WordWrap
-                    }
-
-                    Button {
-                        Layout.minimumWidth: bs_edit.contentWidth
-                        Material.background: Material.Amber
-
-                        contentItem: ButtonStyle {
-                            id: bs_edit
-                            iconButton: "\uE254"
-                            textButton: "Editar"
-                            colorButton: "#fff"
-                        }
-
-                        onClicked: {
-                            dialog_parameters.open();
-                        }
-                    }
-                }
-
-                RowLayout {
-                    id: rowlayout_buttons
-                    width: parent.width
-                    anchors.margins: 20
-                    spacing: 10
-
-                    Button {
-                        Layout.minimumWidth: bs_save.contentWidth
-                        Material.background: Material.Orange
-
-                        contentItem: ButtonStyle {
-                            id: bs_save
-                            iconButton: "\uE161"
-                            textButton: "Salvar"
-                            colorButton: "#fff"
-                        }
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                    }
-
-                    Button {
-                        Layout.minimumWidth: bs_send.contentWidth
-                        Material.background: Material.Green
-
-                        contentItem: ButtonStyle {
-                            id: bs_send
-                            iconButton: "\uE163"
-                            textButton: "Enviar"
-                            colorButton: "#fff"
-                        }
-                    }
-                }
-            }
-        }
-
-        Dialog {
-            id: dialog_parameters
-            title: qsTr("Parâmetros")
-            modal: true
-
-            //x: Math.round((window.width - width) /2)
-            width: (window.width > 1000)? 1000 : parent.width
-            height: window.height - window.header.height
-
-            standardButtons: Dialog.Ok
-
-            contentItem: Item {
+            Item {
                 width: parent.width
-                height: parent.height
+                height: 20
+            }
+
+            Rectangle {
+                width: parent.width
+                height: rowlayout_url.height + rowlayout_parameters.height + rowlayout_buttons.height + 20
+                border.color: "#ddd"
 
                 Column {
                     anchors.fill: parent
+                    anchors.margins: 10
 
-                    Item {
+                    RowLayout {
+                        id: rowlayout_url
                         width: parent.width
-                        height: 50
-
-                        Button {
-                            width: bs_addparameter.contentWidth
-                            Material.background: Material.Green
-                            anchors.right: parent.right
-
-                            contentItem: ButtonStyle {
-                                id: bs_addparameter
-                                iconButton: "\uE145"
-                                colorButton: "#fff"
-                                textButton: "Adicionar"
-                            }
-
-                            onClicked: dialog_add_parameters.open()
-                        }
-                    }
-
-                    Rectangle {
-                        width: parent.width
-                        height: 30
-                        color: Material.color(Material.Green)
-
-                        Item {
-                            anchors.fill: parent
-
-                            Text {
-                                id: table_column1
-                                width: (parent.width /2) -(table_column3.width /2) -(table_column4.width)
-                                height: parent.height
-
-                                text: qsTr("Parâmetro")
-                                color: "#fff"
-                                font.bold: true
-                                font.pixelSize: 14
-
-                                verticalAlignment: Text.AlignVCenter
-                                anchors.left: parent.left
-                                anchors.leftMargin: 5
-                            }
-                            Text {
-                                id: table_column2
-                                width: (parent.width /2) -(table_column4.width)
-                                height: parent.height
-
-                                text: qsTr("Valor")
-                                color: "#fff"
-                                font.bold: true
-                                font.pixelSize: 14
-
-                                verticalAlignment: Text.AlignVCenter
-                                anchors.left: table_column1.right
-                            }
-                            Item {
-                                id: table_column3
-                                width: 25
-                                height: parent.height
-                                anchors.left: table_column2.right
-                            }
-                            Item {
-                                id: table_column4
-                                width: 25
-                                height: parent.height
-                                anchors.left: table_column3.right
-                            }
-                        }
-                    }
-
-                    Rectangle {
-                        width: parent.width
-                        height: parameters.length > 0 ? listview.height + 60 : 30
-                        border.color: "#ddd"
+                        spacing: 10
 
                         Text {
-                            visible: parameters.length == 0
-                            text: qsTr("Nenhum parâmetro adicionado...")
-                            anchors.centerIn: parent
-                            color: "#999"
+                            text: qsTr("URL:")
+                            font.bold: true
                         }
 
-                        ListView {
-                            id: listview
-                            visible: parameters.length > 0
-                            width: parent.width
-                            height: (parameters.length > 3)? (30 * 3) : (30 * parameters.length)
-                            anchors.top: parent.top
-                            anchors.topMargin: 30
+                        TextField {
+                            id: textfield_url
+                            placeholderText: qsTr("http://localhost:8213")
+                            Layout.fillWidth: true
+                        }
 
-                            model: parameters
-                            delegate: Item {
-                                id: listview_item
-                                width: parent.width
-                                height: 30
+                        ComboBox {
+                            id: method
+                            Layout.minimumWidth: 80
+                            model: ['POST', 'GET']
 
-                                Column {
-                                    width: parent.width
-                                    height: parent.height
-
-                                    Item {
-                                        width: parent.width
-                                        height: 29
-
-                                        Text {
-                                            id: item_parameter
-                                            width: (parent.width /2) -(button_edit_parameter.width /2) -(button_remove_parameter.width)
-                                            height: parent.height
-                                            anchors.left: parent.left
-                                            anchors.leftMargin: 5
-
-                                            text: modelData.parameter
-                                            verticalAlignment: Text.AlignVCenter
-                                            elide: Text.ElideRight
-                                        }
-                                        Text {
-                                            id: item_value
-                                            width: (parent.width /2) -(button_remove_parameter.width)
-                                            height: parent.height
-                                            anchors.left: item_parameter.right
-
-                                            text: modelData.value
-                                            verticalAlignment: Text.AlignVCenter
-                                            elide: Text.ElideRight
-                                        }
-
-                                        Rectangle {
-                                            id: button_edit_parameter
-                                            width: 25
-                                            height: parent.height
-                                            color: "transparent"
-
-                                            Text {
-                                                text: "\uE254"
-                                                font.family: material_icon.name
-                                                font.pixelSize: 20
-                                                anchors.centerIn: parent
-                                            }
-                                            anchors.left: item_value.right
-
-                                            MouseArea {
-                                                id: mousearea_edit_parameter
-                                                anchors.fill: parent
-
-                                                onClicked: {
-
-                                                }
-                                            }
-                                        }
-
-                                        Rectangle {
-                                            id: button_remove_parameter
-                                            width: 25
-                                            height: parent.height
-                                            color: "transparent"
-
-                                            Text {
-                                                text: "\uE15C"
-                                                font.family: material_icon.name
-                                                font.pixelSize: 20
-                                                anchors.centerIn: parent
-                                                color: Material.color(Material.Red)
-                                            }
-                                            anchors.left: button_edit_parameter.right
-
-                                            MouseArea {
-                                                id: mousearea_remove_parameter
-                                                anchors.fill: parent
-
-                                                onClicked: {
-                                                    parameters.splice(index, 1);
-                                                    parameters = parameters;
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    Rectangle {
-                                        width: parent.width
-                                        height: 1
-                                        color: "#ddd"
-                                    }
-                                }
-                            }
+                            Material.background: "#fff"
                         }
                     }
-                }
-            }
-            onAccepted: console.log("Ok");
-        }
 
-        Dialog {
-            id: dialog_add_parameters
-            title: qsTr("Adicionar Parâmetro")
-            modal: true
-
-            x: Math.round((window.width - width) /2)
-            width: (window.width > 300)? 300 : parent.width
-            height: 300
-
-            standardButtons: Dialog.Close
-
-            contentItem: Item {
-                width: parent.width
-                height: parent.height
-
-                Column {
-                    anchors.fill: parent
-
-                    Label {
-                        text: qsTr("Parâmetro")
-                    }
-                    TextField {
-                        id: textfield_parameter
+                    Rectangle {
                         width: parent.width
-                        placeholderText: qsTr("parâmetro")
+                        height: 1
+                        color: "#eee"
                     }
 
-                    Label {
-                        text: qsTr("Valor")
-                    }
-                    TextField {
-                        id: textfield_value
+                    RowLayout {
+                        id: rowlayout_parameters
                         width: parent.width
-                        placeholderText: qsTr("valor")
-                    }
+                        anchors.margins: 20
+                        spacing: 10
 
-                    Item {
-                        width: parent.width
-                        height: 5
+                        Text {
+                            text: qsTr("Parâmetros:")
+                            font.bold: true
+                        }
+                        Text {
+                            id: count_parameters
+                            text: parameters.length
+                            Layout.fillWidth: true
+                            wrapMode: Text.WordWrap
+                        }
 
                         Button {
-                            width: parent.width
-                            Material.background: Material.Green
+                            Layout.minimumWidth: bs_edit.contentWidth
 
                             contentItem: ButtonStyle {
-                                colorButton: "#fff"
-                                textButton: "Adicionar"
-                                iconButton: "\uE145"
+                                id: bs_edit
+                                iconButton: "\uE254"
+                                textButton: "Editar"
+                                colorButton: "#333"
                             }
 
                             onClicked: {
-                                if (textfield_parameter.text != "" && textfield_value.text != "") {
-                                    parameters.push({'parameter': textfield_parameter.text, 'value': textfield_value.text});
-                                    parameters = parameters;
-                                    textfield_parameter.text = "";
-                                    textfield_value.text = "";
-                                    dialog_add_parameters.close();
-                                } else {
-                                    tooltip_validate.visible = true
-                                    tooltip_validate.text = qsTr("Preencha todos os campos")
-                                }
+                                dialog_parameters.open();
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        width: parent.width
+                        height: 1
+                        color: "#eee"
+                    }
+
+                    RowLayout {
+                        id: rowlayout_buttons
+                        width: parent.width
+                        anchors.margins: 20
+                        spacing: 10
+
+                        Button {
+                            Layout.minimumWidth: bs_save.contentWidth
+                            Material.background: Material.Orange
+
+                            contentItem: ButtonStyle {
+                                id: bs_save
+                                iconButton: "\uE161"
+                                textButton: "Salvar"
+                                colorButton: "#fff"
+                            }
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        Button {
+                            id: button_sendrequest
+                            Layout.minimumWidth: bs_send.contentWidth
+                            Material.background: Material.Green
+
+                            contentItem: ButtonStyle {
+                                id: bs_send
+                                iconButton: "\uE163"
+                                textButton: "Enviar"
+                                colorButton: "#fff"
                             }
                         }
                     }
                 }
+            }
 
-                ToolTip {
-                    id: tooltip_validate
-                    timeout: 5000
-                    topMargin: parent.height /2
+            Item {
+                width: parent.width
+                height: 20
+            }
+
+            Item {
+                id: item_result
+                visible: (sendRequest.state == "ready")
+                width: parent.width
+                height: text_request.height + 30
+
+                anchors.left: parent.left
+                anchors.leftMargin: 5
+                anchors.right: parent.right
+                anchors.rightMargin: 5
+
+                Rectangle {
+                    anchors.fill: parent
+                    border.color: "#ddd"
+                    radius: 3
+
+                    Item {
+                        width: parent.width
+                        height: text_request.height
+                        anchors.margins: 20
+
+                        anchors.left: parent.left
+                        anchors.leftMargin: 15
+                        anchors.right: parent.right
+                        anchors.rightMargin: 15
+                        anchors.top: parent.top
+                        anchors.topMargin: 15
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 15
+
+                        Text {
+                            id: text_request
+                            text: String(JSON.stringify(sendRequest.json, null, 4))
+                            wrapMode: Text.WordWrap
+                        }
+                    }
+
+                    //http://www.dinnerforfriends.com.br/api/usuario/register
+                }
+            }
+
+            ToolTip {
+                id: tooltip_validate_url
+                timeout: 5000
+                topMargin: parent.height /2
+            }
+
+            DialogParameters {
+                id: dialog_parameters
+            }
+
+            DialogAddParameters {
+                id: dialog_add_parameters
+            }
+
+            Connections {
+                target: button_sendrequest
+
+                onClicked: {
+                    if (textfield_url.text == "") {
+                        tooltip_validate_url.text = qsTr("É necessário definir uma URL para enviar a requisição");
+                        tooltip_validate_url.visible = true;
+                        textfield_url.focus = true;
+                    } else {
+                        busy = true;
+                        sendRequest.source = textfield_url.text
+                        sendRequest.requestMethod = method.currentText
+                        sendRequest.requestParams = JSON.stringify(parameters)
+                        sendRequest.load()
+                    }
+                }
+            }
+
+            Connections {
+                target: sendRequest
+                onStateChanged: {
+                    if (state == "ready") {
+                        webview_content.loadHtml("<pre>Teste: "+String(JSON.stringify(sendRequest.json))+"</pre>")
+                        //webview_content.html = "<h1>Teste</h1>";
+                    }
                 }
             }
         }
