@@ -40,7 +40,9 @@ Dialog {
                         textButton: "Adicionar"
                     }
 
-                    onClicked: dialog_add_parameters.open()
+                    onClicked: {
+                        dialog_add_parameters.open();
+                    }
                 }
             }
 
@@ -169,7 +171,8 @@ Dialog {
                                         anchors.fill: parent
 
                                         onClicked: {
-
+                                            dialog_edit_parameters.itData = index
+                                            dialog_edit_parameters.open();
                                         }
                                     }
                                 }

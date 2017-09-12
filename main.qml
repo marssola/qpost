@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Material 2.0
 
+import StatusBar 0.1
+
 import "./styles"
 
 ApplicationWindow {
@@ -24,6 +26,7 @@ ApplicationWindow {
     property bool busy: false
 
     header: HeaderPage {}
+
     StackView {
         id: stackview
         anchors.fill: parent
@@ -50,14 +53,29 @@ ApplicationWindow {
         z: 2
     }
 
+    ToolTip {
+        id: message
+        timeout: 1000
+        topMargin: parent.height
+        z: 3
+    }
+
     QJSON {
         id: sendRequest
         onStateChanged: {
-            if (state == "error") {
-                console.log(errorString)
-            }
-            if (state == "ready") {
+            if (state != "null") {
+                message.text = "State: " + state
+                message.visible = true;
             }
         }
+    }
+
+    StatusBar {
+        id: statusBar
+        color: Material.color(Material.Green)
+    }
+
+    Component.onCompleted: {
+        statusBar.color = Material.color(Material.Green);
     }
 }

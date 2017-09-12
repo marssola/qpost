@@ -10,6 +10,7 @@ Item {
     property int httpStatus: 0
 
     property var json
+    property string response
 
     state: "null"
     states: [
@@ -19,7 +20,11 @@ Item {
           State { name: "error" }
     ]
 
-    function load() {
+    function load()
+    {
+//        response = "";
+//        json = "";
+
         var xhr = new XMLHttpRequest;
         xhr.open(requestMethod, (requestMethod === "GET") ? source + "?" + requestParams : source);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -31,8 +36,13 @@ Item {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 rootItem.httpStatus = xhr.status;
                 if (rootItem.httpStatus >= 200 && rootItem.httpStatus <= 299) {
-                    json = JSON.parse(xhr.responseText);
-                    rootItem.state = "ready";
+                    try {
+                        json = JSON.parse(xhr.responseText);
+                        rootItem.state = "ready";
+                    } catch (e) {
+                        rootItem.errorString = xhr.responseText;
+                        rootItem.state = "error";
+                    }
                 }
                 else {
                     rootItem.errorString = qsTr("The server returned error ") + xhr.status;

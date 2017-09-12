@@ -15,8 +15,9 @@ Dialog {
     width: (window.width > 300)? 300 : parent.width
     height: 300
 
-    standardButtons: Dialog.Close
+    property string itData: ""
 
+    standardButtons: Dialog.Close
     contentItem: Item {
         width: parent.width
         height: parent.height
@@ -31,6 +32,7 @@ Dialog {
                 id: textfield_parameter
                 width: parent.width
                 placeholderText: qsTr("parâmetro")
+                text: (itData)? parameters[itData].parameter : ""
             }
 
             Label {
@@ -40,6 +42,7 @@ Dialog {
                 id: textfield_value
                 width: parent.width
                 placeholderText: qsTr("valor")
+                text: (itData)? parameters[itData].value : ""
             }
 
             Item {
@@ -52,20 +55,26 @@ Dialog {
 
                     contentItem: ButtonStyle {
                         colorButton: "#fff"
-                        textButton: "Adicionar"
-                        iconButton: "\uE145"
+                        textButton: (itData)? "Atualizar" : "Adicionar"
+                        iconButton: (itData)? "\uE5D5" : "\uE145"
                     }
 
                     onClicked: {
-                        if (textfield_parameter.text != "" && textfield_value.text != "") {
-                            parameters.push({'parameter': textfield_parameter.text, 'value': textfield_value.text});
-                            parameters = parameters;
-                            textfield_parameter.text = "";
-                            textfield_value.text = "";
-                            dialog_add_parameters.close();
-                        } else {
+                        if (textfield_parameter.text == "" || textfield_value.text == "") {
                             tooltip_validate.visible = true
                             tooltip_validate.text = qsTr("Preencha todos os campos")
+                        } else {
+                            if (itData) {
+                                parameters[itData].parameter = textfield_parameter.text
+                                parameters[itData].value = textfield_value.text
+                                parameters = parameters;
+                            } else {
+                                parameters.push({'parameter': textfield_parameter.text, 'value': textfield_value.text});
+                                parameters = parameters;
+                                textfield_parameter.text = "";
+                                textfield_value.text = "";
+                            }
+                            dialog_add_parameters.close();
                         }
                     }
                 }

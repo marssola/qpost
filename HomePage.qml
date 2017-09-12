@@ -13,16 +13,12 @@ ScrollablePage {
 
     property var getJson: []
     property var parameters: [
-        /*{'parameter': 'parametro 1', 'value': 'valor'},
-        {'parameter': 'parametro 2', 'value': 'valor'},
-        {'parameter': 'parametro 3', 'value': 'valor'},
-        {'parameter': 'parametro 4', 'value': 'valor'},
-        {'parameter': 'parametro 5', 'value': 'valor'},
-        {'parameter': 'parametro 6', 'value': 'valor'}*/
+        {'parameter': 'accessToken', 'value': 'EAAHgV7KmBZA0BAGF20fWdi8bSZBdPFY2j0w0zUd3poZCXwSNMZC3AU2NVIpd03UEuJq49TTZBHmmDLoAjQIxG5OUx8WYdGZBZCkqK88CZBvEv3V0hSPnWu06DzNWlXjYQ96lgA4uHM6x5NapJ9r3xzCm34HsAe7Jecu38BcquEqZCp4hTd1DZAaqAk3agiMhaqQ3wDlzaUX7anWmrLWb296jyG0uIEVpjfd7cZD'}
     ];
 
-    contentItem: Item {
-        anchors.fill: parent
+    Item {
+        width: parent.width
+        height: homePage.height
 
         Column {
             anchors.fill: parent
@@ -33,6 +29,7 @@ ScrollablePage {
             }
 
             Rectangle {
+                id: rectangle_form
                 width: parent.width
                 height: rowlayout_url.height + rowlayout_parameters.height + rowlayout_buttons.height + 20
                 border.color: "#ddd"
@@ -55,6 +52,7 @@ ScrollablePage {
                             id: textfield_url
                             placeholderText: qsTr("http://localhost:8213")
                             Layout.fillWidth: true
+                            text: "http://dinnerforfriends.com.br/api/usuario/fblogin"
                         }
 
                         ComboBox {
@@ -154,45 +152,34 @@ ScrollablePage {
                 height: 20
             }
 
-            Item {
-                id: item_result
-                visible: (sendRequest.state == "ready")
+            Rectangle {
+                id: rectangle_text
+                visible: (sendRequest.state !== "null" && sendRequest.state !== "loading")
                 width: parent.width
-                height: text_request.height + 30
+                height: text_request.height + text_error.height + 30
+                border.color: "#ddd"
 
-                anchors.left: parent.left
-                anchors.leftMargin: 5
-                anchors.right: parent.right
-                anchors.rightMargin: 5
-
-                Rectangle {
+                Column {
                     anchors.fill: parent
-                    border.color: "#ddd"
-                    radius: 3
+                    anchors.margins: 20
 
-                    Item {
+                    Text {
+                        id: text_request
+                        visible: sendRequest.json !== undefined
                         width: parent.width
-                        height: text_request.height
-                        anchors.margins: 20
-
-                        anchors.left: parent.left
-                        anchors.leftMargin: 15
-                        anchors.right: parent.right
-                        anchors.rightMargin: 15
-                        anchors.top: parent.top
-                        anchors.topMargin: 15
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 15
-
-                        Text {
-                            id: text_request
-                            text: String(JSON.stringify(sendRequest.json, null, 4))
-                            wrapMode: Text.WordWrap
-                        }
+                        wrapMode: Text.WrapAnywhere
+                        text: String(JSON.stringify(sendRequest.json, null, 4))
                     }
 
-                    //http://www.dinnerforfriends.com.br/api/usuario/register
+                    Text {
+                        id: text_error
+                        visible: sendRequest.errorString !== ""
+                        width: parent.width
+                        wrapMode: Text.WrapAnywhere
+                        text: sendRequest.errorString
+                    }
                 }
+                //http://localhost.dinner4friends.com.br/api/usuario/
             }
 
             ToolTip {
@@ -209,6 +196,10 @@ ScrollablePage {
                 id: dialog_add_parameters
             }
 
+            DialogAddParameters {
+                id: dialog_edit_parameters
+            }
+
             Connections {
                 target: button_sendrequest
 
@@ -221,22 +212,21 @@ ScrollablePage {
                         busy = true;
                         sendRequest.source = textfield_url.text
                         sendRequest.requestMethod = method.currentText
-                        sendRequest.requestParams = JSON.stringify(parameters)
+                        sendRequest.requestParams = prepareRequestParams();
                         sendRequest.load()
                     }
                 }
             }
-
-            Connections {
-                target: sendRequest
-                onStateChanged: {
-                    if (state == "ready") {
-                        webview_content.loadHtml("<pre>Teste: "+String(JSON.stringify(sendRequest.json))+"</pre>")
-                        //webview_content.html = "<h1>Teste</h1>";
-                    }
-                }
-            }
         }
+    }
+
+    function prepareRequestParams()
+    {
+        var data = [];
+        for (var it in parameters) {
+            data.push(parameters[it].parameter + "=" + parameters[it].value);
+        }
+        return data.join("&");
     }
 
     Component.onCompleted: {
