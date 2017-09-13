@@ -65,12 +65,12 @@ Dialog {
                             tooltip_validate.text = qsTr("Preencha todos os campos")
                         } else {
                             if (itData) {
-                                parameters[itData].parameter = textfield_parameter.text
-                                parameters[itData].value = textfield_value.text
-                                parameters = parameters;
+                                object.parameters[itData].parameter = textfield_parameter.text
+                                object.parameters[itData].value = textfield_value.text
+                                object.parameters = object.parameters;
                             } else {
-                                parameters.push({'parameter': textfield_parameter.text, 'value': textfield_value.text});
-                                parameters = parameters;
+                                object.parameters.push({'parameter': textfield_parameter.text, 'value': textfield_value.text});
+                                object.parameters = object.parameters;
                                 textfield_parameter.text = "";
                                 textfield_value.text = "";
                             }

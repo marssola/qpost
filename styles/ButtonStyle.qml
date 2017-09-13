@@ -22,6 +22,7 @@ Item {
             id: icon
             visible: iconButton.length > 0
             font.family: material_icon.name
+            font.pixelSize: 20
             text: iconButton;
             color: colorButton
             anchors.verticalCenter: parent.verticalCenter

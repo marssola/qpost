@@ -11,5 +11,6 @@
         <file>dialogs/DialogAddParameters.qml</file>
         <file>QJSON.qml</file>
         <file>js/Database.js</file>
+        <file>dialogs/DialogSavedParameters.qml</file>
     </qresource>
 </RCC>

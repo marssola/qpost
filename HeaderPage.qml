@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.0
 import QtQuick.LocalStorage 2.0
 
 import "./js/Database.js" as Db
+import "./dialogs"
 
 Rectangle {
     id: root
@@ -51,10 +52,14 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    Db.dbSelectPosts();
-                    console.log(JSON.stringify(Db.list));
+                    dialog_saved_parameters.getPostsList();
+                    dialog_saved_parameters.open();
                 }
             }
         }
+    }
+
+    DialogSavedParameters {
+        id: dialog_saved_parameters
     }
 }

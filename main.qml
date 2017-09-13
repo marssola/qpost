@@ -27,6 +27,13 @@ ApplicationWindow {
 
     property bool busy: false
 
+    QtObject {
+        id: object
+        property string id: "";
+        property string url: "";
+        property var parameters: [];
+    }
+
     header: HeaderPage {}
 
     StackView {

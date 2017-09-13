@@ -14,6 +14,7 @@ Dialog {
     x: Math.round((window.width - width) /2)
     width: (window.width > 1000)? 1000 : parent.width
     height: window.height - window.header.height
+    padding: 5
 
     standardButtons: Dialog.Ok
 
@@ -42,6 +43,11 @@ Dialog {
 
                     onClicked: {
                         dialog_add_parameters.open();
+                    }
+
+                    Shortcut {
+                        sequence: "Ctrl+N"
+                        onActivated: dialog_add_parameters.open();
                     }
                 }
             }
@@ -98,11 +104,11 @@ Dialog {
 
             Rectangle {
                 width: parent.width
-                height: parameters.length > 0 ? listview.height + 60 : 30
+                height: object.parameters.length > 0 ? listview.height + 60 : 30
                 border.color: "#ddd"
 
                 Text {
-                    visible: parameters.length == 0
+                    visible: object.parameters.length == 0
                     text: qsTr("Nenhum parâmetro adicionado...")
                     anchors.centerIn: parent
                     color: "#999"
@@ -110,13 +116,14 @@ Dialog {
 
                 ListView {
                     id: listview
-                    visible: parameters.length > 0
+                    visible: object.parameters.length > 0
                     width: parent.width
-                    height: (parameters.length > 3)? (30 * 3) : (30 * parameters.length)
+                    height: (object.parameters.length > 5)? (30 * 5) : (30 * object.parameters.length)
                     anchors.top: parent.top
                     anchors.topMargin: 30
+                    clip: true
 
-                    model: parameters
+                    model: object.parameters
                     delegate: Item {
                         id: listview_item
                         width: parent.width
@@ -197,8 +204,8 @@ Dialog {
                                         anchors.fill: parent
 
                                         onClicked: {
-                                            parameters.splice(index, 1);
-                                            parameters = parameters;
+                                            object.parameters.splice(index, 1);
+                                            object.parameters = object.parameters;
                                         }
                                     }
                                 }

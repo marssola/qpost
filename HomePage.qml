@@ -13,11 +13,6 @@ import "./dialogs"
 ScrollablePage {
     id: homePage
 
-    property var getJson: []
-    property var parameters: [
-        {'parameter': 'accessToken', 'value': 'EAAHgV7KmBZA0BAGF20fWdi8bSZBdPFY2j0w0zUd3poZCXwSNMZC3AU2NVIpd03UEuJq49TTZBHmmDLoAjQIxG5OUx8WYdGZBZCkqK88CZBvEv3V0hSPnWu06DzNWlXjYQ96lgA4uHM6x5NapJ9r3xzCm34HsAe7Jecu38BcquEqZCp4hTd1DZAaqAk3agiMhaqQ3wDlzaUX7anWmrLWb296jyG0uIEVpjfd7cZD'}
-    ];
-
     Item {
         width: parent.width
         height: homePage.height
@@ -54,7 +49,8 @@ ScrollablePage {
                             id: textfield_url
                             placeholderText: qsTr("http://localhost:8213")
                             Layout.fillWidth: true
-                            text: "http://www.dinnerforfriends.com.br/api/usuario/fblogin"
+                            text: object.url
+                            //text: "http://www.dinnerforfriends.com.br/api/usuario/fblogin"
                         }
 
                         ComboBox {
@@ -84,7 +80,7 @@ ScrollablePage {
                         }
                         Text {
                             id: count_parameters
-                            text: parameters.length
+                            text: object.parameters.length
                             Layout.fillWidth: true
                             wrapMode: Text.WordWrap
                         }
@@ -101,6 +97,11 @@ ScrollablePage {
 
                             onClicked: {
                                 dialog_parameters.open();
+                            }
+
+                            Shortcut {
+                                sequence: "Ctrl+E"
+                                onActivated: dialog_parameters.open();
                             }
                         }
                     }
@@ -124,12 +125,33 @@ ScrollablePage {
                             contentItem: ButtonStyle {
                                 id: bs_save
                                 iconButton: "\uE161"
-                                textButton: "Salvar"
+                                textButton: (object.id !== "")? "Atualizar" : "Salvar"
                                 colorButton: "#fff"
                             }
 
-                            onClicked: {
-                                Db.dbInsertPost(textfield_url.text, parameters);
+                            Shortcut {
+                                sequence: "Ctrl+S"
+                                onActivated: savePost();
+                            }
+                            onClicked: savePost();
+                        }
+
+                        Button {
+                            Layout.minimumWidth: bs_clean.contentWidth
+                            Material.background: Material.Red
+
+                            contentItem: ButtonStyle {
+                                id: bs_clean
+                                iconButton: "\uE5C9"
+                                textButton: "Limpar"
+                                colorButton: "#fff"
+                            }
+
+                            onClicked: clearPost();
+
+                            Shortcut {
+                                sequence: "Ctrl+Backspace"
+                                onActivated: clearPost();
                             }
                         }
 
@@ -147,6 +169,13 @@ ScrollablePage {
                                 iconButton: "\uE163"
                                 textButton: "Enviar"
                                 colorButton: "#fff"
+                            }
+
+                            onClicked: sendPost();
+
+                            Shortcut {
+                                sequence: "Ctrl+Shift+S"
+                                onActivated: sendPost();
                             }
                         }
                     }
@@ -185,7 +214,6 @@ ScrollablePage {
                         text: sendRequest.errorString
                     }
                 }
-                //http://localhost.dinner4friends.com.br/api/usuario/
             }
 
             ToolTip {
@@ -205,34 +233,72 @@ ScrollablePage {
             DialogAddParameters {
                 id: dialog_edit_parameters
             }
+        }
+    }
 
-            Connections {
-                target: button_sendrequest
-
-                onClicked: {
-                    if (textfield_url.text == "") {
-                        tooltip_validate_url.text = qsTr("É necessário definir uma URL para enviar a requisição");
-                        tooltip_validate_url.visible = true;
-                        textfield_url.focus = true;
-                    } else {
-                        busy = true;
-                        sendRequest.source = textfield_url.text
-                        sendRequest.requestMethod = method.currentText
-                        sendRequest.requestParams = prepareRequestParams();
-                        sendRequest.load()
-                    }
-                }
-            }
+    function sendPost()
+    {
+        if (textfield_url.text == "") {
+            tooltip_validate_url.text = qsTr("É necessário definir uma URL para enviar a requisição");
+            tooltip_validate_url.visible = true;
+            textfield_url.focus = true;
+        } else {
+            busy = true;
+            sendRequest.source = textfield_url.text
+            sendRequest.requestMethod = method.currentText
+            sendRequest.requestParams = prepareRequestParams();
+            sendRequest.load()
         }
     }
 
     function prepareRequestParams()
     {
         var data = [];
-        for (var it in parameters) {
-            data.push(parameters[it].parameter + "=" + parameters[it].value);
+        for (var it in object.parameters) {
+            data.push(object.parameters[it].parameter + "=" + object.parameters[it].value);
         }
         return data.join("&");
+    }
+
+    function savePost()
+    {
+        if (textfield_url.text == "") {
+            tooltip_validate_url.text = qsTr("É necessário definir uma URL para salvar");
+            tooltip_validate_url.visible = true
+            textfield_url.focus = true
+            return;
+        }
+        if (object.id !== "") {
+            var result = Db.dbUpdatePost(object.id, textfield_url.text, object.parameters);
+            if (result.id) {
+                message.text = qsTr("Atualizado");
+                message.visible = true;
+            } else if (result.error) {
+                message.text = qsTr("Erro: %1").arg(result.error);
+                message.visible = true;
+            }
+        } else {
+            var result = Db.dbInsertPost(textfield_url.text, object.parameters);
+            if (result.id) {
+                object.id = result.id;
+                message.text = qsTr("Salvo");
+                message.visible = true;
+            } else if (result.error) {
+                message.text = qsTr("Erro: %1").arg(result.error);
+                message.visible = true;
+            }
+        }
+    }
+
+    function clearPost()
+    {
+        object.id = "";
+        object.url = "";
+        object.url = object.url;
+        object.parameters.splice(0, object.parameters.length)
+        object.parameters = object.parameters
+
+        console.log("Clear post");
     }
 
     Component.onCompleted: {
