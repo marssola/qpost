@@ -4,7 +4,9 @@ import QtQuick.Controls.Material 2.0
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
+import QtQuick.LocalStorage 2.0
 
+import "./js/Database.js" as Db
 import "./styles"
 import "./dialogs"
 
@@ -52,7 +54,7 @@ ScrollablePage {
                             id: textfield_url
                             placeholderText: qsTr("http://localhost:8213")
                             Layout.fillWidth: true
-                            text: "http://dinnerforfriends.com.br/api/usuario/fblogin"
+                            text: "http://www.dinnerforfriends.com.br/api/usuario/fblogin"
                         }
 
                         ComboBox {
@@ -124,6 +126,10 @@ ScrollablePage {
                                 iconButton: "\uE161"
                                 textButton: "Salvar"
                                 colorButton: "#fff"
+                            }
+
+                            onClicked: {
+                                Db.dbInsertPost(textfield_url.text, parameters);
                             }
                         }
 

@@ -3,10 +3,12 @@ import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Material 2.0
+import QtQuick.LocalStorage 2.0
 
 import StatusBar 0.1
 
 import "./styles"
+import "./js/Database.js" as Db
 
 ApplicationWindow {
     id: window
@@ -77,5 +79,6 @@ ApplicationWindow {
 
     Component.onCompleted: {
         statusBar.color = Material.color(Material.Green);
+        Db.dbInit();
     }
 }

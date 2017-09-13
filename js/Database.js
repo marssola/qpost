@@ -1,0 +1,41 @@
+var db = LocalStorage.openDatabaseSync("QpostStorage", "", "QPost", 1000000);
+var list = [];
+
+function dbInit()
+{
+    try {
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, parameters TEXT);');
+        });
+    } catch (err) {
+        console.log("Error creating table in database: " + err);
+    };
+}
+
+function dbInsertPost(url, parameters)
+{
+    db.transaction(function (tx) {
+        try {
+            var id = tx.executeSql("INSERT INTO posts (url, parameters) VALUES (?, ?)", [url, JSON.stringify(parameters)]);
+        } catch (err) {
+            console.log("Error: " + err);
+        }
+    });
+}
+
+function dbSelectPosts()
+{
+    db.transaction(function (tx) {
+        try {
+            var select = tx.executeSql("SELECT * FROM posts");
+            for (var it = 0; it < select.rows.length; it++) {
+                list.push({
+                      "url": select.rows[it].url,
+                      "parameters": select.rows[it].parameters
+                });
+            }
+        } catch (err) {
+            console.log("Error: " + err);
+        }
+    });
+}
