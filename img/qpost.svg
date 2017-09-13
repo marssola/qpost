@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="32"
-   viewBox="0 0 32 32"
-   width="32"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="ic_send_black_24px.svg"
+   sodipodi:docname="qpost.svg"
    style="fill:#000000">
   <metadata
      id="metadata12">
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -42,49 +42,92 @@
      inkscape:window-height="717"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="4.9166667"
-     inkscape:cx="15.363029"
-     inkscape:cy="13.644771"
+     inkscape:zoom="0.67258009"
+     inkscape:cx="-15.2063"
+     inkscape:cy="205.96038"
      inkscape:window-x="0"
      inkscape:window-y="22"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
-  <path
-     d="M 0,8 24,8 24,32 0,32 Z"
-     id="path6"
-     inkscape:connector-curvature="0"
-     style="fill:none" />
   <g
-     id="g4151"
-     transform="translate(-51.966099,16.949152)">
+     id="g4147"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
-       rx="3.3439865"
-       ry="9.3843565"
-       y="-16.949152"
-       x="51.966099"
-       height="32"
-       width="32"
-       id="rect3340"
-       style="fill:#4caf50;fill-opacity:1;stroke:none" />
+       ry="0.16882613"
+       rx="127.46228"
+       y="0"
+       x="0"
+       height="512"
+       width="512"
+       id="rect4145"
+       style="fill:none;fill-opacity:1;stroke:none" />
     <g
-       transform="translate(-1.1526071,-1.0095349)"
-       id="g3346">
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       transform="matrix(0.82031248,0,0,0.82031248,48.439294,46.000006)"
+       id="g4163">
       <path
-         d="m 71.279362,5.0603829 11.66111,-4.99999991 -11.66111,-5.00000009 -0.0055,3.8888889 8.333333,1.11111119 -8.333333,1.11111111 z"
-         id="path4"
-         style="fill:#ffffff"
-         inkscape:connector-curvature="0" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:11.47982025px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="54.652321"
-         y="3.5805621"
-         id="text3342"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           id="tspan3344"
+         d="m 0,488 24,0 0,24 -24,0 z"
+         id="path6"
+         inkscape:connector-curvature="0"
+         style="fill:none" />
+      <g
+         id="g4156">
+        <g
+           id="g4151">
+          <g
+             id="g4148">
+            <rect
+               rx="256"
+               ry="71.635345"
+               y="-1.8847657e-06"
+               x="-2.9736168"
+               height="512"
+               width="512"
+               id="rect3340"
+               style="fill:#4caf50;fill-opacity:1;stroke:none" />
+          </g>
+          <rect
+             rx="112.52266"
+             ry="0.13433148"
+             y="-1.8847657e-06"
+             x="283.98108"
+             height="256.26837"
+             width="225.04532"
+             id="rect4144"
+             style="fill:#4caf50;fill-opacity:1;stroke:none" />
+        </g>
+        <rect
+           rx="112.52266"
+           ry="0.13433148"
+           y="255.73163"
+           x="-2.9736168"
+           height="256.26837"
+           width="225.04532"
+           id="rect4146"
+           style="fill:#4caf50;fill-opacity:1;stroke:none" />
+      </g>
+      <g
+         id="g3346"
+         transform="matrix(16,0,0,16,-849.89929,255.03387)">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff"
+           id="path4"
+           d="m 71.279362,5.0603829 11.66111,-4.99999991 -11.66111,-5.00000009 -0.0055,3.8888889 8.333333,1.11111119 -8.333333,1.11111111 z" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text3342"
+           y="3.5805621"
            x="54.652321"
-           y="3.5805621">QP</tspan></text>
+           style="font-style:normal;font-weight:normal;font-size:11.47982025px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             y="3.5805621"
+             x="54.652321"
+             id="tspan3344"
+             sodipodi:role="line">QP</tspan></text>
+      </g>
     </g>
   </g>
 </svg>

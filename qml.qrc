@@ -12,5 +12,7 @@
         <file>QJSON.qml</file>
         <file>js/Database.js</file>
         <file>dialogs/DialogSavedParameters.qml</file>
+        <file>img/qpost.png</file>
+        <file>img/qpost.svg</file>
     </qresource>
 </RCC>

@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQuickView>
 #include <QQuickStyle>
+#include <QtQuick>
 
 #include "./cpp/statusbar.h"
 
@@ -9,6 +10,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+    app.setWindowIcon(QIcon(":/img/qpost.png"));
 
     qmlRegisterType<StatusBar>("StatusBar", 0, 1, "StatusBar");
 
