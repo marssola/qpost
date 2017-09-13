@@ -29,5 +29,13 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/res/drawable-hdpi/icon.png \
+    android/res/drawable-ldpi/icon.png \
+    android/res/drawable-mdpi/icon.png
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
 HEADERS += \
     cpp/statusbar.h
