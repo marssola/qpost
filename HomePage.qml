@@ -29,7 +29,7 @@ ScrollablePage {
                 id: rectangle_form
                 width: parent.width
                 height: rowlayout_url.height + rowlayout_parameters.height + rowlayout_buttons.height + 20
-                border.color: "#ddd"
+                border.color: "#eee"
 
                 Column {
                     anchors.fill: parent
@@ -192,7 +192,7 @@ ScrollablePage {
                 visible: (sendRequest.state !== "null" && sendRequest.state !== "loading")
                 width: parent.width
                 height: text_request.height + text_error.height + 30
-                border.color: "#ddd"
+                border.color: "#eee"
 
                 Column {
                     anchors.fill: parent

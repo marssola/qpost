@@ -18,7 +18,7 @@ ApplicationWindow {
     title: qsTr("QPost")
 
     Material.accent: Material.color(Material.Green)
-    Material.background: "#eee"
+    Material.background: "#f0f0f0"
 
     FontLoader {
         id: material_icon

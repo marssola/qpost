@@ -14,7 +14,10 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="qpost.svg"
-   style="fill:#000000">
+   style="fill:#000000"
+   inkscape:export-filename="/home/mauro/Developer/qpost/img/qpost.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -43,90 +46,78 @@
      id="namedview8"
      showgrid="false"
      inkscape:zoom="0.67258009"
-     inkscape:cx="-15.2063"
-     inkscape:cy="205.96038"
+     inkscape:cx="154.13527"
+     inkscape:cy="140.89646"
      inkscape:window-x="0"
      inkscape:window-y="22"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <g
-     id="g4147"
+     id="g4445"
+     transform="translate(737.45862,-44.604355)"
      inkscape:export-xdpi="90"
      inkscape:export-ydpi="90">
-    <rect
-       ry="0.16882613"
-       rx="127.46228"
-       y="0"
-       x="0"
-       height="512"
-       width="512"
-       id="rect4145"
-       style="fill:none;fill-opacity:1;stroke:none" />
+    <path
+       d="m -491.30237,290.7606 19.6875,0 0,19.6875 -19.6875,0 z"
+       id="path4152"
+       inkscape:connector-curvature="0"
+       style="fill:none" />
     <g
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       transform="matrix(0.82031248,0,0,0.82031248,48.439294,46.000006)"
-       id="g4163">
+       id="g4441">
+      <rect
+         ry="0.16882613"
+         rx="127.46228"
+         y="44.604355"
+         x="-737.45862"
+         height="512"
+         width="512"
+         id="rect4363"
+         style="fill:none;fill-opacity:1;stroke:none" />
       <path
-         d="m 0,488 24,0 0,24 -24,0 z"
-         id="path6"
-         inkscape:connector-curvature="0"
-         style="fill:none" />
+         style="fill:#4caf50;fill-opacity:1;stroke:none"
+         d="m -600.92737,90.604353 -90.53125,90.533207 0,329.4668 319.60546,0 100.39454,-100.39454 0,-319.605467 -329.46875,0 z"
+         id="rect4281"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       transform="translate(-1.5243512,-1.9623754)"
+       id="g4352">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:234.25012207px;line-height:100%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="-660.61591"
+         y="303.03555"
+         id="text4224"
+         sodipodi:linespacing="100%"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:139.92263794px;line-height:100%;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Medium';fill:#ffffff"
+           sodipodi:role="line"
+           id="tspan4226"
+           x="-660.61591"
+           y="303.03555" /><tspan
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:139.92263794px;line-height:100%;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Medium';fill:#ffffff"
+           sodipodi:role="line"
+           x="-660.61591"
+           y="442.95819"
+           id="tspan4228">POST</tspan></text>
       <g
-         id="g4156">
-        <g
-           id="g4151">
-          <g
-             id="g4148">
-            <rect
-               rx="256"
-               ry="71.635345"
-               y="-1.8847657e-06"
-               x="-2.9736168"
-               height="512"
-               width="512"
-               id="rect3340"
-               style="fill:#4caf50;fill-opacity:1;stroke:none" />
-          </g>
-          <rect
-             rx="112.52266"
-             ry="0.13433148"
-             y="-1.8847657e-06"
-             x="283.98108"
-             height="256.26837"
-             width="225.04532"
-             id="rect4144"
-             style="fill:#4caf50;fill-opacity:1;stroke:none" />
-        </g>
-        <rect
-           rx="112.52266"
-           ry="0.13433148"
-           y="255.73163"
-           x="-2.9736168"
-           height="256.26837"
-           width="225.04532"
-           id="rect4146"
-           style="fill:#4caf50;fill-opacity:1;stroke:none" />
-      </g>
-      <g
-         id="g3346"
-         transform="matrix(16,0,0,16,-849.89929,255.03387)">
+         id="g4347"
+         transform="translate(0,-12)">
+        <text
+           sodipodi:linespacing="125%"
+           id="text4230"
+           y="316.12549"
+           x="-659.901"
+           style="font-style:normal;font-weight:normal;font-size:194.08712769px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             y="316.12549"
+             x="-659.901"
+             id="tspan4232"
+             sodipodi:role="line">Q</tspan></text>
         <path
            inkscape:connector-curvature="0"
            style="fill:#ffffff"
-           id="path4"
-           d="m 71.279362,5.0603829 11.66111,-4.99999991 -11.66111,-5.00000009 -0.0055,3.8888889 8.333333,1.11111119 -8.333333,1.11111111 z" />
-        <text
-           sodipodi:linespacing="125%"
-           id="text3342"
-           y="3.5805621"
-           x="54.652321"
-           style="font-style:normal;font-weight:normal;font-size:11.47982025px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           xml:space="preserve"><tspan
-             y="3.5805621"
-             x="54.652321"
-             id="tspan3344"
-             sodipodi:role="line">QP</tspan></text>
+           id="path4234"
+           d="m -508.01813,341.14451 197.15215,-84.53404 -197.15215,-84.53404 -0.093,65.74869 140.89005,18.78535 -140.89005,18.78534 z" />
       </g>
     </g>
   </g>

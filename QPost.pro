@@ -33,6 +33,12 @@ DISTFILES += \
     android/AndroidManifest.xml \
     android/res/drawable-hdpi/icon.png \
     android/res/drawable-ldpi/icon.png \
+    android/res/drawable-mdpi/icon.png \
+    android/AndroidManifest.xml \
+    android/res/drawable-hdpi/icon.png \
+    android/res/drawable-hdpi/splash.9.png \
+    android/res/drawable-ldpi/icon.png \
+    android/res/drawable-ldpi/splash.9.png \
     android/res/drawable-mdpi/icon.png
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
