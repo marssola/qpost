@@ -9,12 +9,12 @@ import "../"
 
 Dialog {
     id: dialog_help
-    title: qsTr("Ajuda")
     modal: true
 
     x: Math.round((window.width - width) /2)
     width: parent.width - 10
     height: parent.height - 5
+    padding: (window.width < 480)? 0 : 5
 
     standardButtons: Dialog.Close
     contentItem: Item {
@@ -66,6 +66,7 @@ Dialog {
                                   Text {
                                       Layout.fillWidth: true
                                       text: qsTr("Atalhos")
+                                      font.pixelSize: 18
                                       font.bold: true
                                   }
 
@@ -87,7 +88,7 @@ Dialog {
 
                                       delegate: Item {
                                           width: parent.width
-                                          height: 40
+                                          height: 50
 
                                           ColumnLayout {
                                               anchors.fill: parent
@@ -96,9 +97,15 @@ Dialog {
                                                   text: modelData.shortcut
                                                   font.bold: true
                                               }
-                                              Text {
-                                                  text: modelData.action
+                                              Item {
                                                   Layout.fillHeight: true
+                                                  Layout.fillWidth: true
+
+                                                  Text {
+                                                      text: modelData.action
+                                                      width: parent.width
+                                                      wrapMode: Text.WrapAnywhere
+                                                  }
                                               }
                                           }
                                       }
