@@ -8,6 +8,7 @@ import QtQuick.LocalStorage 2.0
 import StatusBar 0.1
 
 import "./styles"
+import "./dialogs"
 import "./js/Database.js" as Db
 
 ApplicationWindow {
@@ -77,6 +78,10 @@ ApplicationWindow {
                 message.visible = true;
             }
         }
+    }
+
+    DialogHelp {
+        id: dialog_help
     }
 
     StatusBar {

@@ -14,5 +14,6 @@
         <file>dialogs/DialogSavedParameters.qml</file>
         <file>img/qpost.png</file>
         <file>img/qpost.svg</file>
+        <file>dialogs/DialogHelp.qml</file>
     </qresource>
 </RCC>

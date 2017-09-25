@@ -34,34 +34,54 @@ Rectangle {
             verticalAlignment: Qt.AlignVCenter
         }
 
-        Item {
-            width: 50
-            height: parent.height
+        RowLayout {
+            ToolButton {
+                Text {
+                    width: parent.width
+                    height: parent.height
+                    text: "\uE161"
+                    font.family: material_icon.name
+                    font.pixelSize: 24
+                    color: "#fff"
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
 
-            Text {
-                width: parent.width
-                height: parent.height
-                text: "\uE161"
-                font.family: material_icon.name
-                font.pixelSize: 32
-                color: "#fff"
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-            MouseArea {
-                anchors.fill: parent
                 onClicked: {
                     dialog_saved_parameters.getPostsList();
                     dialog_saved_parameters.open();
                 }
+
+                Shortcut {
+                    sequence: "Ctrl+O"
+                    onActivated: {
+                        dialog_saved_parameters.getPostsList();
+                        dialog_saved_parameters.open();
+                    }
+                }
             }
 
-            Shortcut {
-                sequence: "Ctrl+O"
-                onActivated: {
-                    dialog_saved_parameters.getPostsList();
-                    dialog_saved_parameters.open();
+            ToolButton {
+                Text {
+                    width: parent.width
+                    height: parent.height
+                    text: "\uE887"
+                    font.family: material_icon.name
+                    font.pixelSize: 24
+                    color: "#fff"
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                onClicked: {
+                    dialog_help.open();
+                }
+
+                Shortcut {
+                    sequence: "F1"
+                    onActivated: {
+                        dialog_help.open();
+                    }
                 }
             }
         }
