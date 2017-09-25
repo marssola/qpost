@@ -56,6 +56,14 @@ Rectangle {
                     dialog_saved_parameters.open();
                 }
             }
+
+            Shortcut {
+                sequence: "Ctrl+O"
+                onActivated: {
+                    dialog_saved_parameters.getPostsList();
+                    dialog_saved_parameters.open();
+                }
+            }
         }
     }
 
