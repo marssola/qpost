@@ -22,11 +22,11 @@ Dialog {
         width: parent.width
         height: parent.height
 
-        Column {
+        ColumnLayout {
             anchors.fill: parent
 
             Item {
-                width: parent.width
+                Layout.fillWidth: true
                 height: 50
 
                 Button {
@@ -46,14 +46,14 @@ Dialog {
                     }
 
                     Shortcut {
-                        sequence: "Ctrl+N"
+                        sequence: "Ctrl++"
                         onActivated: dialog_add_parameters.open();
                     }
                 }
             }
 
             Rectangle {
-                width: parent.width
+                Layout.fillWidth: true
                 height: 30
                 color: Material.color(Material.Green)
 
@@ -103,8 +103,9 @@ Dialog {
             }
 
             Rectangle {
-                width: parent.width
-                height: object.parameters.length > 0 ? listview.height + 60 : 30
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                //height: object.parameters.length > 0 ? listview.height + 60 : 30
                 border.color: "#ddd"
 
                 Text {
@@ -118,10 +119,10 @@ Dialog {
                     id: listview
                     visible: object.parameters.length > 0
                     width: parent.width
-                    height: (object.parameters.length > 5)? (30 * 5) : (30 * object.parameters.length)
-                    anchors.top: parent.top
-                    anchors.topMargin: 30
+                    height: parent.height
                     clip: true
+
+                    ScrollIndicator.vertical: ScrollIndicator {}
 
                     model: object.parameters
                     delegate: Item {

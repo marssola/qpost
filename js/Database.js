@@ -28,7 +28,7 @@ function dbInsertPost(url, parameters)
 
 function dbUpdatePost(id, url, parameters)
 {
-    console.log(id, url, parameters);
+    var result;
     db.transaction(function (tx) {
         try {
             var id = tx.executeSql("UPDATE posts SET url=?, parameters=? WHERE id=?", [url, JSON.stringify(parameters), id]);

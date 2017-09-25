@@ -87,5 +87,7 @@ ApplicationWindow {
     Component.onCompleted: {
         statusBar.color = Material.color(Material.Green);
         Db.dbInit();
+
+        window.showMaximized();
     }
 }

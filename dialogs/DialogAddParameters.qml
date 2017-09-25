@@ -32,7 +32,7 @@ Dialog {
                 id: textfield_parameter
                 width: parent.width
                 placeholderText: qsTr("parâmetro")
-                text: (itData)? parameters[itData].parameter : ""
+                text: (itData)? object.parameters[itData].parameter : ""
             }
 
             Label {
@@ -42,7 +42,7 @@ Dialog {
                 id: textfield_value
                 width: parent.width
                 placeholderText: qsTr("valor")
-                text: (itData)? parameters[itData].value : ""
+                text: (itData)? object.parameters[itData].value : ""
             }
 
             Item {
