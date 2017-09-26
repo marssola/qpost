@@ -50,7 +50,8 @@ ScrollablePage {
                             placeholderText: qsTr("http://localhost:8213")
                             Layout.fillWidth: true
                             text: object.url
-                            //text: "http://www.dinnerforfriends.com.br/api/usuario/fblogin"
+
+                            selectByMouse: true
                         }
 
                         ComboBox {
@@ -233,6 +234,10 @@ ScrollablePage {
             DialogAddParameters {
                 id: dialog_edit_parameters
             }
+
+            DialogAddJSON {
+                id: dialog_add_parametersJSON
+            }
         }
     }
 
@@ -297,8 +302,6 @@ ScrollablePage {
         object.url = object.url;
         object.parameters.splice(0, object.parameters.length)
         object.parameters = object.parameters
-
-        console.log("Clear post");
     }
 
     Component.onCompleted: {

@@ -15,5 +15,6 @@
         <file>img/qpost.png</file>
         <file>img/qpost.svg</file>
         <file>dialogs/DialogHelp.qml</file>
+        <file>dialogs/DialogAddJSON.qml</file>
     </qresource>
 </RCC>

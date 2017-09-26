@@ -32,6 +32,8 @@ Dialog {
                 id: textfield_parameter
                 width: parent.width
                 placeholderText: qsTr("parâmetro")
+
+                selectByMouse: true
                 text: (itData)? object.parameters[itData].parameter : ""
             }
 
@@ -42,6 +44,8 @@ Dialog {
                 id: textfield_value
                 width: parent.width
                 placeholderText: qsTr("valor")
+
+                selectByMouse: true
                 text: (itData)? object.parameters[itData].value : ""
             }
 

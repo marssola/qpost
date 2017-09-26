@@ -147,6 +147,7 @@ Dialog {
                         object.id = modelData.id;
                         object.url = modelData.url;
                         object.parameters = JSON.parse(modelData.parameters);
+                        console.log(JSON.stringify(object.parameters));
                         dialog_saved_parameters.close();
                     }
                 }

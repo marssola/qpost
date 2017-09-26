@@ -18,39 +18,86 @@ Dialog {
 
     standardButtons: Dialog.Ok
 
+    header: Item {
+        width: parent.width
+        height: 50
+
+        Row {
+            anchors.right: parent.right
+            anchors.rightMargin: 5
+            spacing: 10
+
+            Button {
+                width: bs_clearallparameters.contentWidth
+                Material.background: Material.Red
+
+                contentItem: ButtonStyle {
+                    id: bs_clearallparameters
+                    iconButton: "\uE5C9"
+                    colorButton: "#fff"
+                    textButton: "Todos"
+                }
+
+                onClicked: {
+                    object.parameters.splice(0, object.parameters.length)
+                    object.parameters = object.parameters
+                }
+
+                Shortcut {
+                    sequence: "Ctrl+-"
+                    onActivated: {
+                        object.parameters.splice(0, object.parameters.length)
+                        object.parameters = object.parameters
+                    }
+                }
+            }
+
+            Button {
+                width: bs_addparameterJSON.contentWidth
+                Material.background: Material.Green
+
+                contentItem: ButtonStyle {
+                    id: bs_addparameterJSON
+                    iconButton: "\uE254"
+                    colorButton: "#fff"
+                    textButton: "JSON"
+                }
+
+                onClicked: dialog_add_parametersJSON.open();
+
+                Shortcut {
+                    sequence: "Ctrl+J"
+                    onActivated: dialog_add_parametersJSON.open();
+                }
+            }
+
+            Button {
+                width: bs_addparameter.contentWidth
+                Material.background: Material.Green
+
+                contentItem: ButtonStyle {
+                    id: bs_addparameter
+                    iconButton: "\uE145"
+                    colorButton: "#fff"
+                    textButton: "Novo"
+                }
+
+                onClicked: dialog_add_parameters.open();
+
+                Shortcut {
+                    sequence: "Ctrl++"
+                    onActivated: dialog_add_parameters.open();
+                }
+            }
+        }
+    }
+
     contentItem: Item {
         width: parent.width
         height: parent.height
 
         ColumnLayout {
             anchors.fill: parent
-
-            Item {
-                Layout.fillWidth: true
-                height: 50
-
-                Button {
-                    width: bs_addparameter.contentWidth
-                    Material.background: Material.Green
-                    anchors.right: parent.right
-
-                    contentItem: ButtonStyle {
-                        id: bs_addparameter
-                        iconButton: "\uE145"
-                        colorButton: "#fff"
-                        textButton: "Adicionar"
-                    }
-
-                    onClicked: {
-                        dialog_add_parameters.open();
-                    }
-
-                    Shortcut {
-                        sequence: "Ctrl++"
-                        onActivated: dialog_add_parameters.open();
-                    }
-                }
-            }
 
             Rectangle {
                 Layout.fillWidth: true
