@@ -199,20 +199,26 @@ ScrollablePage {
                     anchors.fill: parent
                     anchors.margins: 20
 
-                    Text {
+                    TextArea {
                         id: text_request
                         visible: sendRequest.json !== undefined
                         width: parent.width
-                        wrapMode: Text.WrapAnywhere
+                        wrapMode: TextArea.WrapAnywhere
                         text: String(JSON.stringify(sendRequest.json, null, 4))
+                        readOnly: true
+                        selectByMouse: true
+                        selectByKeyboard: true
                     }
 
-                    Text {
+                    TextArea {
                         id: text_error
                         visible: sendRequest.errorString !== ""
                         width: parent.width
-                        wrapMode: Text.WrapAnywhere
+                        wrapMode: TextArea.WrapAnywhere
                         text: sendRequest.errorString
+                        readOnly: true
+                        selectByMouse: true
+                        selectByKeyboard: true
                     }
                 }
             }
