@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="512"
-   viewBox="0 0 512 512"
-   width="512"
+   height="1024"
+   viewBox="0 0 1024 1024"
+   width="1024"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -26,7 +26,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -45,16 +45,16 @@
      inkscape:window-height="717"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="0.67258009"
-     inkscape:cx="154.13527"
-     inkscape:cy="140.89646"
+     inkscape:zoom="0.23779297"
+     inkscape:cx="-360.32173"
+     inkscape:cy="57.330257"
      inkscape:window-x="0"
      inkscape:window-y="22"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <g
      id="g4445"
-     transform="translate(737.45862,-44.604355)"
+     transform="matrix(2,0,0,2,1474.9172,-89.208705)"
      inkscape:export-xdpi="90"
      inkscape:export-ydpi="90">
     <path
