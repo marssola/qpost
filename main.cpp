@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QQuickView>
 #include <QQuickStyle>
 #include <QtQuick>
@@ -17,7 +18,6 @@ int main(int argc, char *argv[])
     QQuickStyle::setStyle("Material");
 
     QQmlApplicationEngine engine;
-
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
